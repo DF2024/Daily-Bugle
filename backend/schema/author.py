@@ -25,7 +25,13 @@ class AuthorResponse(SQLModel):
     id: int
     name: str
     email: EmailStr
+    role : str
 
 class AuthorUpdate(SQLModel):
     name : str
     email : str
+    role : str
+
+class Token(SQLModel):
+    access_token: str
+    token_type: str

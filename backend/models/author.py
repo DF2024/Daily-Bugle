@@ -1,21 +1,15 @@
-from sqlmode import SQLModel, Field
-from typing import Optional
-from datetime import datetime
+from typing import Optional, List
 from pydantic import EmailStr
+from sqlmodel import SQLModel, Field, Relationship
+from .news import News
 
-#id
-#name
-#bio
-#photo_url
-#role
-#email
-#password_hash
+class Author(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str
+    bio: Optional[str] = None
+    photo_url: Optional[str] = None
+    role: Optional[str] = None
+    email: Optional[EmailStr] = None
+    password_hash: Optional[str] = None
 
-
-class authors(SQLModel, table = True):
-    id : int | None = Field(default = None, primary_key = True)
-    name : str = Field(default = None)
-    bio : Optional[str] = Field(default = None)
-    photo_url : Optional[str] = Field(default = None)
-    role : str = Field(default = None)
-    email : EmailStr = Field(default = None)
+    news: List["News"] = Relationship(back_populates="author")
