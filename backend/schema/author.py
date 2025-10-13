@@ -1,37 +1,29 @@
-from sqlmodel import SQLModel
-from pydantic import EmailStr
+from typing import Optional, List
+from pydantic import BaseModel
 
-#id
-#name
-#bio
-#photo_url
-#role
-#email
-#password_hash
 
-class AuthorCreate(SQLModel):
-    name : str
-    email : EmailStr
-    bio : str
-    photo_url : str
-    role : str
+class AuthorBase(BaseModel):
+    name: str
+    bio: Optional[str] = None
+    photo_url: Optional[str] = None
+    role: Optional[str] = None
+    email: Optional[str] = None
+
+
+class AuthorCreate(AuthorBase):
     password: str
 
-class AuthorLogin(SQLModel):
-    name : str
-    password : str
 
-class AuthorResponse(SQLModel):
+class AuthorUpdate(BaseModel):
+    name: Optional[str] = None
+    bio: Optional[str] = None
+    photo_url: Optional[str] = None
+    role: Optional[str] = None
+    email: Optional[str] = None
+
+
+class AuthorRead(AuthorBase):
     id: int
-    name: str
-    email: EmailStr
-    role : str
 
-class AuthorUpdate(SQLModel):
-    name : str
-    email : str
-    role : str
-
-class Token(SQLModel):
-    access_token: str
-    token_type: str
+    class Config:
+        orm_mode = True

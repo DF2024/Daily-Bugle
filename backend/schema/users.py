@@ -1,28 +1,29 @@
-from sqlmodel import SQLModel
-from pydantic import EmailStr
-
-#name
-#email
-#password
-#role
-
-class UserCreate(SQLModel):
-    name : str
-    email : EmailStr
-    password : str
-    role : str
+from typing import Optional
+from datetime import datetime
+from pydantic import BaseModel, EmailStr
 
 
-class UserLogin(SQLModel):
-    name : str
-    password: str
-
-class UserResponse(SQLModel):
-    id: int
-    name: str
+class UserBase(BaseModel):
+    username: str
     email: EmailStr
-    role : str
 
-class Token(SQLModel):
-    access_token: str
-    token_type: str
+
+class UserCreate(UserBase):
+    password: str
+    role: Optional[str] = "reporter"
+
+
+class UserUpdate(BaseModel):
+    username: Optional[str] = None
+    email: Optional[EmailStr] = None
+    password: Optional[str] = None
+    role: Optional[str] = None
+
+
+class UserRead(UserBase):
+    id: int
+    role: str
+    created_at: datetime
+
+    class Config:
+        orm_mode = True
