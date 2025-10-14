@@ -1,7 +1,8 @@
+from __future__ import annotations
+
 from typing import Optional, List
 from sqlmodel import SQLModel, Field, Relationship
 from .news_tag import NewsTag
-from .news import News
 
 
 class Tag(SQLModel, table=True):

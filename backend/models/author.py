@@ -1,7 +1,9 @@
+from __future__ import annotations
+
 from typing import Optional, List
 from pydantic import EmailStr
 from sqlmodel import SQLModel, Field, Relationship
-from .news import News
+
 
 class Author(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
