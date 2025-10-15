@@ -7,22 +7,16 @@ class UserBase(BaseModel):
     username: str
     email: EmailStr
 
-
 class UserCreate(UserBase):
     password: str
-
-
 
 class UserUpdate(BaseModel):
     username: Optional[str] = None
     email: Optional[EmailStr] = None
     password: Optional[str] = None
-    role: Optional[str] = None
-
 
 class UserRead(UserBase):
     id: int
-    role: str
     created_at: datetime
 
     class Config:
