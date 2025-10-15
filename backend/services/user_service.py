@@ -33,8 +33,13 @@ def update_user(db: Session, user_id: int, user_data: UserUpdate):
     user = db.get(User, user_id)
     if not user:
         return None
+    
+    if key == "password":
+        value = auth.hash_password(value)
+
     for key, value in user_data.dict(exclude_unset=True).items():
         setattr(user, key, value)
+
     db.add(user)
     db.commit()
     db.refresh(user)
