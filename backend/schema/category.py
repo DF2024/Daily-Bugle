@@ -4,9 +4,8 @@ from pydantic import BaseModel
 
 class CategoryBase(BaseModel):
     name: str
-    slug: str
     description: Optional[str] = None
-    image_url: Optional[str] = None
+
 
 
 class CategoryCreate(CategoryBase):
@@ -15,9 +14,7 @@ class CategoryCreate(CategoryBase):
 
 class CategoryUpdate(BaseModel):
     name: Optional[str] = None
-    slug: Optional[str] = None
     description: Optional[str] = None
-    image_url: Optional[str] = None
 
 
 class CategoryRead(CategoryBase):

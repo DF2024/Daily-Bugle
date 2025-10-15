@@ -9,5 +9,4 @@ class User(SQLModel, table=True):
     username: str
     email: EmailStr
     password_hash: str
-    role: str = Field(default="reporter")
     created_at: datetime = Field(default_factory=datetime.utcnow)

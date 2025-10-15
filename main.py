@@ -18,6 +18,3 @@ app.include_router(news_router.router)
 app.include_router(tag_router.router)
 
 
-if __name__ == "__main__":
-    # Para cambiar a localhost explícitamente
-    uvicorn.run(backend, host="127.0.0.1", port=8000)

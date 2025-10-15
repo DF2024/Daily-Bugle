@@ -1,14 +1,15 @@
-from __future__ import annotations
-
-from typing import Optional, List
+# from __future__ import annotations # Puedes mantenerlo
+from typing import Optional, List, TYPE_CHECKING
 from sqlmodel import SQLModel, Field, Relationship
+from sqlalchemy.orm import Mapped 
 
+if TYPE_CHECKING:
+    from .news import News
 
 class Category(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     name: str
-    slug: str
     description: Optional[str] = None
-    image_url: Optional[str] = None
 
-    news: List["News"] = Relationship(back_populates="category")
+    news: Mapped[List["News"]] = Relationship(back_populates="category")
+

@@ -10,7 +10,7 @@ class UserBase(BaseModel):
 
 class UserCreate(UserBase):
     password: str
-    role: Optional[str] = "reporter"
+
 
 
 class UserUpdate(BaseModel):
