@@ -6,6 +6,8 @@ from sqlalchemy.orm import Mapped
 if TYPE_CHECKING:
     from .news import News
 
+print("hello world!")
+
 class Comment(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     author_name: str
