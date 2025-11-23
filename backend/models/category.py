@@ -13,3 +13,4 @@ class Category(SQLModel, table=True):
 
     news: Mapped[List["News"]] = Relationship(back_populates="category")
 
+print("HOLAAAAAAAAAAAAAAAAAAAAAAAA")
